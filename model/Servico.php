@@ -51,3 +51,7 @@ function getdata_postagem() {
 function setdata_postagem($data_postagem) {
     $this->data_postagem = $data_postagem;
 }
+
+
+
+Cod_servico, prestador, cintato, descricao, data"
