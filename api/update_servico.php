@@ -1,8 +1,19 @@
 <?php
+include __DIR__ . '/../control/ServicoControl.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$data = file_get_contents('php://input');
+$obj = json_decode($data);
+
+$crm = $obj->cod_servico;
+
+if (!$cod_servico) {
+    http_response_code(400);
+    echo json_encode(array("mensagem" => "Necessita de um codigo para atualizar"));
+} else {
+    if (!empty($data)) {
+        $ServicoControl = new ServicoControl();
+        $ServicoControl->update($obj, $cod_servico);
+    }
+}
+?>
 

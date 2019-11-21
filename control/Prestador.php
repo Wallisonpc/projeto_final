@@ -1,8 +1,32 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include __DIR__ . '/../modelPrestador.php';
 
+class PrestadorControl {
+
+    function insert($obj) {
+        $prestador = new Prestador();
+        return $prestador->insert($obj);
+    }
+
+    function delete($obj, $insc) {
+        $prestador = new Prestador();
+        return $prestador->delete($obj, $insc);
+    }
+
+    function update($obj, $insc) {
+        $prestador = new Prestador();
+        return $prestador->update($obj, $insc);
+    }
+
+    function find($insc = null) {
+        $prestador = new Prestador();
+        return $prestador->find($insc);
+    }
+
+    function findAll() {
+        $prestador = new Prestador();
+        return $prestador->delete();
+    }
+
+}
