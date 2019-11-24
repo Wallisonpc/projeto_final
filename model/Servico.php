@@ -33,7 +33,7 @@ function getcontato_prestador() {
 }
 
 function setTcontato_prestador($contato_prestador) {
-    $this->contato_prestador = $Tcontato_prestador;
+    $this->contato_prestador = $contato_prestador;
 }
 
 function getdescricao() {
@@ -52,6 +52,42 @@ function setdata_postagem($data_postagem) {
     $this->data_postagem = $data_postagem;
 }
 
+function insert($obj) {
+    $sql = "INSERT INTO Servico (CodigoServico, Nome, Contato, Descricao, Data) VALUES (:cod_servico, :nome_prestador, :contato_prestador, :descricao, :data_postagem)";
+    $dados = Conexao::prepare($sql);
+    $dados->bindValue('CodigoServico', $obj->cod_servico);
+    $dados->bindValue('Nome', $obj->nome_prestador);
+    $dados->bindValue('Contato', $obj->contato_prestador);
+    $dados->bindValue('Descricao', $obj->descricao);
+    $dados->bindValue('Data', $obj->data_postagem);
+    return $dados->execute();
+}
 
+function update($obj, $cod_servico = null) {
+    $sql = "UPDATE Prestador SET Nome =: nome_prestador WHERE Codigo=:cod_servico";
+    $dados = Conexao::prepare($sql);
+    $dados->bindValue('Nome', $obj->nome_prestador);
+    $dados->bindValue('Codigo', $cod_servico->cod_servico);
+    return $dados->execute();
+}
 
-Cod_servico, prestador, cintato, descricao, data"
+function delete($cod_servico = null) {
+    $sql = "DELETE FROM Prestador WHERE Codigo=:cod_servico";
+    $dados = Conexao::prepare($sql);
+    $dados->bindValue('Codigo', $cod_servico);
+    $dados->execute();
+}
+
+function find($cod_servico = null) {
+    $sql = "SELECT * FROM Prestador WHERE Codigo=:cod_servico";
+    $dados = Conexao::prepare($sql);
+    $dados->bindValue(Codigo, $cod_servico);
+    $dados->execute();
+}
+
+function findALL() {
+    $sql = "SELECT * FROM Prestador";
+    $dados = Conexao::prepare($sql);
+    $dados->execute();
+    return $dados->fetchALL();
+}

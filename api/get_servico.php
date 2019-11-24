@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../control/ServicoControl.php';
+include __DIR__ . '/../control/Servico.php';
 
  $ServicoControl = new ServicoControl();
 

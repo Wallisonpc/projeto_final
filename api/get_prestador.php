@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../control/PrestadorControl.php';
+include __DIR__ . '/../control/Prestador.php';
 
 $PrestadorControl = new PrestadorControl();
 

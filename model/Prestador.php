@@ -61,13 +61,55 @@ $this->Senha = $Senha;
 }
 
 function insert($obj){
-$sql = "INSERT INTO prestador(Inscricao, Nome, Telefone, Email, Cidade, Senha) VALUES (:Inscricao, :Nome, :Telefone, :Email, :Cidade, :Senha);
-        $consulta= Conexao:prepare ($sql);
-        $consulta->bindValue('Inscricao', $obj->Inscricao);
-        $consulta->bindValue('Nome', $obj->Nome);
-        $consulta->bindValue('Telefone', $obj->Telefone); 
-        $consulta->bindValue('Email', $obj->Email);
-        $consulta->bindValue('Cidade', $obj->Cidade);
-        $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
-        return $consulta->execute();
+$sql = "INSERT INTO Prestador(Inscricao, Nome, Telefone, Email, Cidade, Senha) VALUES (:Inscricao, :Nome, :Telefone, :Email, :Cidade, :Senha)";
+        $dados= Conexao::prepare ($sql);
+        $dados->bindValue('Inscricao', $obj->insc);
+        $dados->bindValue('Nome', $obj->Nome);
+        $dados->bindValue('Telefone', $obj->Telefone); 
+        $dados->bindValue('Email', $obj->Email);
+        $dados->bindValue('Cidade', $obj->Cidade);
+        $dados->bindValue('Senha', $this->gerarSenha($obj->Senha));
+        return $dados->execute();
+   }
+   
+function update($obj, $insc =null) {
+    $sql = "UPDATE Prestador SET Nome =:Nome WHERE insc=:insc";
+    $dados = Conexao::prepare($sql);
+    $dados->bindValue ('Nome', $obj->Nome);
+    $dados->bindValue ('insc', $insc->insc);
+    return $dados->execute();
+       
 }
+
+function delete ($obj, $insc= null) {
+    $sql = "DELETE FROM Prestador WHERE insc=:insc";
+    $dados=  Conexao::prepare($sql);
+    $dados-> bindValue ('insc', $insc);
+    $dados->execute();
+}
+
+function find($insc=null){
+    $sql="SELECT * FROM Prestador WHERE insc=:insc";
+    $dados=  Conexao::prepare($sql);
+    $dados-> bindValue(insc, $insc);
+    $dados->execute();
+}
+
+function findALL(){
+    $sql="SELECT * FROM Prestador";
+    $dados=  Conexao::prepare($sql);
+    $dados->execute();
+    return $dados->fetchALL();
+    
+}
+
+function gerarSenha($Senha){
+    return password_hash($Senha, PASSWORD_DEFAULT);
+}
+function verificarSenha($hash, $Senha) {
+    return var_dump(password_verify($Senha, $hash));
+}
+
+
+
+
