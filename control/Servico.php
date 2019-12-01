@@ -18,12 +18,12 @@ Class ServicoControl{
 
     function update($obj, $cod_servico) {
         $servico = new Servico();
-        return $Servico->update($obj, $cod_servico);
+        return $servico->update($obj, $cod_servico);
     }
 
     function find($cod_servico = null) {
         $servico = new Servico();
-        return $prestador->find($cod_servico);
+        return $servico->find($cod_servico);
     }
 
     function findAll() {

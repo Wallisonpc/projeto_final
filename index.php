@@ -1,10 +1,11 @@
 <?php
 //define('PASTAPROJETO', 'AulaBanco');
-define('PASTAPROJETO', 'Projeto_final');
+define('PASTAPROJETO', 'Projeto_Final_Web');
 
 /* Função criada para retornar o tipo de requisição */
 function checkRequest() {
-	$method = $_SERVER['REQUEST_METHOD'];
+    /* @var $method type */
+    $method=$_SERVER['REQUEST_METHOD'];
 	switch ($method) {
 	  case 'PUT':
 	  	$answer = "update";
@@ -28,23 +29,44 @@ function checkRequest() {
 $answer = checkRequest();
 
 $request = $_SERVER['REQUEST_URI']; 
-http://localhost:8080/Projeto_final
+http://localhost:8080/Projeto_Final_Web
 
 // IDENTIFICA A URI DA REQUISIÇÃO
 
 
 switch ($request) {
-    case '/'.PASTAPROJETO.'/' :
-        require __DIR__ . '/api/api.php';
+    case '/'.Projeto_Final_Web.'/' :
+        require __DIR__ . '/api/delete_prestador.php';
         break;
     case '' :
-        require __DIR__ . '/api/api.php';
+        require __DIR__ . '/api/delete_servico.php';
         break;
-    case '/'.PASTAPROJETO.'/pessoas' :
-        require __DIR__ . '/api/'.$answer.'_pessoa.php';
+    case '' :
+        require __DIR__ . '/api/get_prestador.php';
         break;
-    case '/'.PASTAPROJETO.'/conteudo' :
-        require __DIR__ . '/api/'.$answer.'_conteudo.php';
+    case '' :
+        require __DIR__ . '/api/get_servico.php';
+        break;
+    case '' :
+        require __DIR__ . '/api/post_prestador.php';
+        break;
+    case '' :
+        require __DIR__ . '/api/post_servico.php';
+        break;
+    case '' :
+        require __DIR__ . '/api/update_prestador.php';
+        break;
+    case '' :
+        require __DIR__ . '/api/update_servico.php';
+        break;
+    case '/'.PASTAPROJETO.'/Control' :
+        require __DIR__ . '/api/'.$answer.'_Prestador.php';
+        break;
+    case '' :
+        require __DIR__ . '/api/'.$answer.'_Servico.php';
+        break;
+    case '/'.PASTAPROJETO.'/Servico' :
+        require __DIR__ . '/api/'.$answer.'_Servico.php';
         break;
     
     default:

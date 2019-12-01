@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../modelPrestador.php';
+include __DIR__ . '/../model/Prestador.php';
 
 class PrestadorControl {
 
